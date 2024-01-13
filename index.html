@@ -36,5 +36,45 @@
         </svg>
       </button>
     </section>
+
+    <section class="booking">
+      <div class="booking__container">
+        <h2 class="booking__title">Забронируйте место в зале</h2>
+
+        <form class="booking__form" method="POST">
+          <fieldset class="booking__fieldset booking__fieldset_user-info">
+            <legend class="booking__legend">Введите данные</legend>
+
+            <div class="booking__input-group">
+              <input class="booking__input booking__input_fullname" type="text" name="fullName" placeholder="Имя Фамилия">
+              <input class="booking__input booking__input_phone" type="text" name="phone" placeholder="Телефон">
+              <input class="booking__input booking__input_ticket" type="text" name="ticketNumber" placeholder="Номер билета">
+            </div>
+          </fieldset>
+
+          <fieldset class="booking__fieldset booking__fieldset_comedians">
+            <legend class="booking__legend">Выберите комика</legend>
+
+            <ul class="booking__comedians-list">
+              <li class="booking__comedian">
+                <select class="booking__select" name="comedian" >
+                  <option value="1">Юлия Ахмедова</option>
+                  <option value="2">Слава Комиссаренко</option>
+                </select>
+
+                <select class="booking__select" name="time">
+                  <option value="20:00">20:00</option>
+                  <option value="22:00">22:00</option>
+                </select>
+
+                <button class="booking__hall">Зал 1</button>
+              </li>
+            </ul>
+          </fieldset>
+
+          <button class="booking__button booking__button_submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
   </body>
 </html>
