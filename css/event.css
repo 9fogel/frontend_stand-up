@@ -27,9 +27,6 @@
 }
 
 .event__info-item {
-  /* display: flex;
-  align-items: baseline;
-  gap: 8px; */
   font-size: 30px;
   line-height: 1.4;
 }
