@@ -128,6 +128,10 @@
 }
 
 @media (max-width: 1024px) {
+  .booking__container {
+    padding: 0 60px;
+  }
+
   .booking__title {
     margin-bottom: 40px;
     font-size: 32px;
@@ -148,6 +152,27 @@
   }
 
   .booking__input {
+    max-width: none;
+  }
+}
+
+@media (max-width: 680px) {
+  .booking__container {
+    padding: 0 16px;
+  }
+
+  .booking__title {
+    margin-bottom: 32px;
+    font-size: 24px;
+  }
+
+  .booking__comedian {
+    flex-wrap: wrap;
+  }
+
+  .booking__select_comedian {
+    margin-right: 0;
+    margin-bottom: 8px;
     max-width: none;
   }
 }

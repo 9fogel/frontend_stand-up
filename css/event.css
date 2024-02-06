@@ -3,7 +3,7 @@
   flex-direction: column;;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 80px 16px 60px;
   width: 100%;
   min-height: 100vh;
   background-color: blueviolet;
@@ -76,5 +76,26 @@
     margin-bottom: 20px;
     font-size: 18px;
   }
+}
 
+@media (max-width: 680px) {
+  .event {
+    padding: 80px 16px 60px;
+  }
+
+  .event__title {
+    margin-bottom: 8px;
+    font-size: 38px;
+  }
+
+  .event__info {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .event__button_reserve {
+    margin-top: auto;
+  }
 }
