@@ -90,15 +90,9 @@
 
 .booking__select {
   margin-right: 8px;
-  padding: 0 16px;
   width: 100%;
   height: 44px;
-  font-size: 18px;
-  line-height: 1.4;
-  color: #1a1a1a;
-  background-color: #ffffff;
-  border: 1px solid transparent;
-  border-radius: 8px;
+
 }
 
 .booking__select_comedian {
