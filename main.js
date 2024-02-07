@@ -41,6 +41,28 @@ const createComedianBlock = () => {
   });
   bookingTomSelectTime.disable();
 
+  bookingTomSelectComedian.on('change', () => {
+    bookingTomSelectTime.enable();
+    bookingTomSelectComedian.blur();
+
+    bookingTomSelectTime.addOptions([
+      {
+        value: 1,
+        text: 'Белый',
+      },
+      {
+        value: 2,
+        text: 'Серый',
+      }
+    ]);
+  });
+
+  bookingTomSelectTime.on('change', () => {
+    bookingTomSelectTime.blur();
+    bookingHall.textContent = 'Зал 1';
+    bookingComedian.append(bookingHall);
+  });
+
   return bookingComedian;
 };
 
