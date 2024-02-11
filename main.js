@@ -1,9 +1,11 @@
+import { Notification } from './css/scripts/notification';
 import './style.css';
 import TomSelect from 'tom-select';
 
 const MAX_COMEDIANS = 6;
 
 const bookingComedianList = document.querySelector('.booking__comedians-list');
+const bookingForm = document.querySelector('.booking__form');
 
 const createComedianBlock = (comedians) => {
   const bookingComedian = document.createElement('li');
@@ -33,6 +35,7 @@ const createComedianBlock = (comedians) => {
       text: item.comedian,
     })),
   });
+
 
   const bookingTomSelectTime = new TomSelect(bookingSelectTime, {
     hideSelected: true,
@@ -71,6 +74,7 @@ const createComedianBlock = (comedians) => {
     bookingComedian.append(bookingHall);
   });
 
+
   const createNextBookingComedian = () => {
     if (bookingComedianList.children.length < MAX_COMEDIANS) {
       const nextComediansBlock = createComedianBlock(comedians);
@@ -85,10 +89,12 @@ const createComedianBlock = (comedians) => {
   return bookingComedian;
 };
 
+
 const getComedians = async () => {
   const response = await fetch('http://localhost:8080/comedians');
   return response.json();
 };
+
 
 const init = async () => {
   const countComedians = document.querySelector('.event__info-item_comedians .event__info-number');
@@ -98,6 +104,38 @@ const init = async () => {
 
   const comedianBlock = createComedianBlock(comedians);
   bookingComedianList.append(comedianBlock);
+
+  bookingForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const data = {
+      booking: [],
+    };
+    const times = new Set();
+
+    new FormData(bookingForm).forEach((value, field) => {
+      if (field === 'booking') {
+        const [comedian, time] = value.split(',');
+
+        if (comedian && time) {
+          data.booking.push({
+            comedian,
+            time,
+          });
+          times.add(time);
+        }
+
+      } else {
+        data[field] = value;
+      }
+
+      if (times.size !== data.booking.length) {
+        console.log('Нельзя быть в одно время на двух выступлениях');
+        //TODO: notification -> 'Нельзя быть в одно время на двух выступлениях'
+      }
+
+    });
+  });
 };
 
 init();
