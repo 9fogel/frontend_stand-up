@@ -1,6 +1,8 @@
 import { Notification } from './scripts/notification';
 import './style.css';
 import TomSelect from 'tom-select';
+import Inputmask from 'inputmask';
+import JustValidate from 'just-validate';
 
 const MAX_COMEDIANS = 6;
 
@@ -106,6 +108,41 @@ const init = async () => {
 
   const comedianBlock = createComedianBlock(comedians);
   bookingComedianList.append(comedianBlock);
+
+  const validate = new JustValidate(bookingForm, {
+    errorFieldCssClass: 'booking__input_invalid',
+    successFieldCssClass: 'booking__input_valid ',
+  });
+
+  const bookingInputPhone = document.querySelector('.booking__input_phone');
+  const bookingInputTIcket = document.querySelector('.booking__input_ticket');
+
+  validate
+    .addField('.booking__input_fullname', [{
+      rule: 'required',
+      errorMessage: 'Заполните имя',
+    }
+    ])
+    .addField(bookingInputPhone, [{
+      rule: 'required',
+      errorMessage: 'Заполните телефон',
+    // }, {
+    //   validator: (value) => {
+
+      // },
+      // errorMessage: 'Некорректный телефон',
+    }
+    ])
+    .addField(bookingInputTIcket, [{
+      rule: 'required',
+      errorMessage: 'Заполните номер билета',
+    // }, {
+    //   validator: (value) {
+
+      // },
+      // errorMessage: 'Неверный номер билета',
+    }
+    ]);
 
   bookingForm.addEventListener('submit', (event) => {
     event.preventDefault();
