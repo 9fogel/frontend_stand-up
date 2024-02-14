@@ -67,10 +67,12 @@
 
 .booking__input_valid {
   border-color: #00992b;
+  border-width: 2px;
 }
 
 .booking__input_invalid {
   border-color: #900000;
+  border-width: 2px;
 }
 
 .booking__fieldset_comedians {

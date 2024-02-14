@@ -117,6 +117,9 @@ const init = async () => {
   const bookingInputPhone = document.querySelector('.booking__input_phone');
   const bookingInputTIcket = document.querySelector('.booking__input_ticket');
 
+  new Inputmask('+375(99)999-99-99').mask(bookingInputPhone);
+  new Inputmask('9999').mask(bookingInputTIcket);
+
   validate
     .addField('.booking__input_fullname', [{
       rule: 'required',
@@ -126,21 +129,23 @@ const init = async () => {
     .addField(bookingInputPhone, [{
       rule: 'required',
       errorMessage: 'Заполните телефон',
-    // }, {
-    //   validator: (value) => {
-
-      // },
-      // errorMessage: 'Некорректный телефон',
+    }, {
+      validator() {
+        const phone = bookingInputPhone.inputmask.unmaskedvalue();
+        return phone.length === 9;
+      },
+      errorMessage: 'Некорректный телефон',
     }
     ])
     .addField(bookingInputTIcket, [{
       rule: 'required',
       errorMessage: 'Заполните номер билета',
-    // }, {
-    //   validator: (value) {
-
-      // },
-      // errorMessage: 'Неверный номер билета',
+    }, {
+      validator() {
+        const ticket = bookingInputTIcket.inputmask.unmaskedvalue();
+        return ticket.length === 4;
+      },
+      errorMessage: 'Неверный номер билета',
     }
     ]);
 
