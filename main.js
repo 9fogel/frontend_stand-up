@@ -1,8 +1,10 @@
-import { Notification } from './css/scripts/notification';
+import { Notification } from './scripts/notification';
 import './style.css';
 import TomSelect from 'tom-select';
 
 const MAX_COMEDIANS = 6;
+
+const notification = Notification.getInstance();
 
 const bookingComedianList = document.querySelector('.booking__comedians-list');
 const bookingForm = document.querySelector('.booking__form');
@@ -130,8 +132,7 @@ const init = async () => {
       }
 
       if (times.size !== data.booking.length) {
-        console.log('Нельзя быть в одно время на двух выступлениях');
-        //TODO: notification -> 'Нельзя быть в одно время на двух выступлениях'
+        notification.show('Нельзя быть в одно время на двух выступлениях', false);
       }
 
     });
