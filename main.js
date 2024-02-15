@@ -114,6 +114,7 @@ const init = async () => {
     successFieldCssClass: 'booking__input_valid ',
   });
 
+  const bookingInputName = document.querySelector('.booking__input_fullname');
   const bookingInputPhone = document.querySelector('.booking__input_phone');
   const bookingInputTIcket = document.querySelector('.booking__input_ticket');
 
@@ -121,7 +122,7 @@ const init = async () => {
   new Inputmask('9999').mask(bookingInputTIcket);
 
   validate
-    .addField('.booking__input_fullname', [{
+    .addField(bookingInputName, [{
       rule: 'required',
       errorMessage: 'Заполните имя',
     }
@@ -147,7 +148,21 @@ const init = async () => {
       },
       errorMessage: 'Неверный номер билета',
     }
-    ]);
+    ]).onFail((fields) => {
+      let errorMessage = '';
+
+      for (const key in fields) {
+        if (!Object.hasOwnProperty.call(fields, key)) {
+          continue;
+        }
+        const element = fields[key];
+        if(!element.isValid) {
+          errorMessage += `${element.errorMessage}, `;
+        }
+      }
+
+      notification.show(errorMessage.slice(0, -2), false);
+    });
 
   bookingForm.addEventListener('submit', (event) => {
     event.preventDefault();
