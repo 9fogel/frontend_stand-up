@@ -6,11 +6,21 @@
   padding: 80px 16px 60px;
   width: 100%;
   min-height: 100vh;
+  color: #ffffff;
   background-color: blueviolet;
   background-image: url("../img/bg.jpg");
   background-size: cover;
   background-position: center;
-  color: #ffffff;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+.event__hidden {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .event__title {
@@ -36,6 +46,17 @@
   font-size: 80px;
   font-weight: 800;
   line-height: 1.2;
+}
+
+.event__button {
+  font-size: 24px;
+  line-height: 1.4;
+  opacity: 1;
+  visibility: visible;
+}
+
+.event__button_hidden {
+  visibility: hidden;
 }
 
 .event__button_reserve {

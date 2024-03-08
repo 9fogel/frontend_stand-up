@@ -6,12 +6,24 @@
   min-height: 100vh;
   color: #1a1a1a;
   background-color: #ebecf1;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s, visibility 0.5s;
+
+}
+
+.booking__hidden {
+  display: none;
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .booking__container {
-  max-width: 1440px;
   margin: 0 auto;
   padding: 0 80px;
+  max-width: 1440px;
   width: 100%;
 }
 
