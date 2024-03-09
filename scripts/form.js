@@ -1,8 +1,16 @@
 import Inputmask from 'inputmask';
 import JustValidate from 'just-validate';
 import { Notification } from './notification.js';
+import { sendData } from './api.js';
 
-export const initForm = (bookingForm, bookingInputName, bookingInputPhone, bookingInputTIcket) => {
+export const initForm = (
+  bookingForm,
+  bookingInputName,
+  bookingInputPhone,
+  bookingInputTIcket,
+  changeSection,
+  bookingComedianList,
+  ) => {
 
   const notification = Notification.getInstance();
 
@@ -57,8 +65,12 @@ export const initForm = (bookingForm, bookingInputName, bookingInputPhone, booki
     notification.show(errorMessage.slice(0, -2), false);
   });
 
-bookingForm.addEventListener('submit', (event) => {
+bookingForm.addEventListener('submit', async (event) => {
   event.preventDefault();
+
+  if (!validate.isValid) {
+    return;
+  }
 
   const data = {
     booking: [],
@@ -80,11 +92,32 @@ bookingForm.addEventListener('submit', (event) => {
     } else {
       data[field] = value;
     }
-
-    if (times.size !== data.booking.length) {
-      notification.show('Нельзя быть в одно время на двух выступлениях', false);
-    }
-
   });
+
+  if (times.size !== data.booking.length) {
+    notification.show('Нельзя быть в одно время на двух выступлениях', false);
+  }
+
+  if (!times.size) {
+    notification.show('Вы не выбрали комика и/или время');
+  }
+
+  const method = bookingForm.getAttribute('method');
+
+  let isSend = false;
+  if (method === 'PATCH') {
+    isSend = await sendData(method, data, data.ticketNumber);
+  } else {
+    isSend = await sendData(method, data);
+  }
+
+  if (isSend) {
+    notification.show('Бронь принята', true);
+    changeSection();
+    bookingForm.reset();
+    bookingComedianList.textContent = '';
+  }
+
+  console.log(data);
 });
 }

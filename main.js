@@ -20,8 +20,6 @@ const init = async () => {
   const eventButtonEdit = document.querySelector('.event__button_edit');
   const bookingTitle = document.querySelector('.booking__title');
 
-  initForm(bookingForm, bookingInputName, bookingInputPhone, bookingInputTIcket);
-
   const comedians = await getComedians();
 
   if (comedians) {
@@ -29,7 +27,23 @@ const init = async () => {
     const comedianBlock = createComedianBlock(comedians, bookingComedianList);
     bookingComedianList.append(comedianBlock);
 
-    initChangeSection(event, booking, eventButtonReserve, eventButtonEdit, bookingTitle, bookingForm);
+    const changeSection = initChangeSection(
+      event,
+      booking,
+      eventButtonReserve,
+      eventButtonEdit,
+      bookingTitle,
+      bookingForm,
+    );
+
+    initForm(
+      bookingForm,
+      bookingInputName,
+      bookingInputPhone,
+      bookingInputTIcket,
+      changeSection,
+      bookingComedianList,
+    );
   }
 };
 
