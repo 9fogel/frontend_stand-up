@@ -1,3 +1,5 @@
+import { createComedianBlock } from "./comedians";
+
 export const initChangeSection = (
   event,
   booking,
@@ -5,6 +7,8 @@ export const initChangeSection = (
   eventButtonEdit,
   bookingTitle,
   bookingForm,
+  comedians,
+  bookingComedianList,
   ) => {
   eventButtonReserve.style.transition = 'opacity 0.5s, visibility 0.5s';
   eventButtonEdit.style.transition = 'opacity 0.5s, visibility 0.5s';
@@ -15,6 +19,12 @@ export const initChangeSection = (
   const changeSection = () => {
     event.classList.toggle('event__hidden');
     booking.classList.toggle('booking__hidden');
+
+    if (!booking.classList.contains('booking__hidden')) {
+      const comedianBlock = createComedianBlock(comedians, bookingComedianList);
+      bookingComedianList.append(comedianBlock);
+    }
+
   };
 
   eventButtonReserve.addEventListener('click', () => {

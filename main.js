@@ -1,7 +1,6 @@
 import './style.css';
 import { initForm } from './scripts/form';
 import { getComedians } from './scripts/api';
-import { createComedianBlock } from './scripts/comedians';
 import { initChangeSection } from './scripts/changeSection';
 
 const init = async () => {
@@ -24,8 +23,6 @@ const init = async () => {
 
   if (comedians) {
     countComedians.textContent = comedians.length;
-    const comedianBlock = createComedianBlock(comedians, bookingComedianList);
-    bookingComedianList.append(comedianBlock);
 
     const changeSection = initChangeSection(
       event,
@@ -34,6 +31,8 @@ const init = async () => {
       eventButtonEdit,
       bookingTitle,
       bookingForm,
+      comedians,
+      bookingComedianList,
     );
 
     initForm(

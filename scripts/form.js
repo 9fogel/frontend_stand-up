@@ -96,10 +96,12 @@ bookingForm.addEventListener('submit', async (event) => {
 
   if (times.size !== data.booking.length) {
     notification.show('Нельзя быть в одно время на двух выступлениях', false);
+    return;
   }
 
   if (!times.size) {
     notification.show('Вы не выбрали комика и/или время');
+    return;
   }
 
   const method = bookingForm.getAttribute('method');
