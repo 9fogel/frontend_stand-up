@@ -135,6 +135,25 @@
   background: url('../img//qr.png') right/24px no-repeat;
 }
 
+.booking__client-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.booking__title-qr {
+  grid-column: 1 / -1;
+  margin-bottom: 8px;
+  font-size: 30px;
+}
+
+.booking__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
 @media (max-width: 1024px) {
   .booking__container {
     padding: 0 60px;

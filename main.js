@@ -2,8 +2,14 @@ import './style.css';
 import { initForm } from './scripts/form';
 import { getComedians } from './scripts/api';
 import { initChangeSection } from './scripts/changeSection';
+import { initQrPage } from './scripts/qrPage';
 
 const init = async () => {
+  if (window.location.pathname.endsWith('qr.html')) {
+    initQrPage();
+    return;
+  }
+
   const bookingComedianList = document.querySelector('.booking__comedians-list');
   const bookingForm = document.querySelector('.booking__form');
 

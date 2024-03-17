@@ -2,6 +2,21 @@ import { Notification } from './notification.js';
 
 const API_URL = 'https://api-stand-up.glitch.me/';
 
+export const getClient = async (ticket) => {
+  try {
+    const response = await fetch(`${API_URL}clients/${ticket}`);
+    if(!response.ok) {
+      throw new Error(`Сервер вернул ошибку: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.log(`Возникла проблема с fetch запросом: ${error.message}`);
+
+    Notification.getInstance().show('Возникла ошибка сервера, попробуйте позже');
+  }
+};
+
 export const getComedians = async () => {
   try {
     const response = await fetch(`${API_URL}comedians`);
